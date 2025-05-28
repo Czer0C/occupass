@@ -89,6 +89,8 @@ function CustomersComponent() {
 
             <FilterZone />
 
+            <br />
+
             <CusomterTable />
         </div>
     );
@@ -299,7 +301,7 @@ const COLS_CONFIG: MRT_ColumnDef<Customer>[] = [
         header: 'ID',
         size: 100,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
         Cell: ({ cell }) => {
             const id = cell.getValue();
 
@@ -317,75 +319,75 @@ const COLS_CONFIG: MRT_ColumnDef<Customer>[] = [
         header: 'Company Name',
         size: 200,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'contactName',
         header: 'Contact Name',
         size: 150,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'contactTitle',
         header: 'Contact Title',
         size: 150,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'address',
         header: 'Address',
         size: 200,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'city',
         header: 'City',
         size: 120,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'region',
         header: 'Region',
         size: 120,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'postalCode',
         header: 'Postal Code',
         size: 120,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'country',
         header: 'Country',
         size: 120,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'phone',
         header: 'Phone',
         size: 120,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'fax',
         header: 'Fax',
         size: 120,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
 ];
 
 function CusomterTable() {
-    const [sorting, setSorting] = React.useState();
+    const [sorting, setSorting] = React.useState([]);
 
     console.log(sorting);
 
@@ -399,6 +401,7 @@ function CusomterTable() {
 
     return (
         <MaterialReactTable
+            enableTopToolbar={false}
             data={list}
             columns={columns}
             state={{
@@ -407,6 +410,7 @@ function CusomterTable() {
                     pageIndex: search.skip,
                     pageSize: search.take,
                 },
+                sorting,
             }}
             enableColumnFilters={false}
             muiTableContainerProps={{ sx: { maxHeight: '600px' } }}
@@ -421,9 +425,9 @@ function CusomterTable() {
             manualSorting
             manualPagination
             rowCount={data?.total ?? 0}
-            onSortingChange={(p) => {
-                console.log(p);
-            }}
+            // onSortingChange={setSorting}
+            // enableMultiSort
+            maxMultiSortColCount={5}
             enablePagination={false}
             renderBottomToolbar={() => <PaginationZone />}
         />

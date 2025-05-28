@@ -11,8 +11,9 @@ import FreeSoloCreateOption from '../components/Creatable';
 
 import { Order } from '../type';
 import { z } from 'zod';
-import { ArrowBack, ArrowForward } from '@mui/icons-material';
+import { ArrowBack, ArrowForward, CalendarMonth } from '@mui/icons-material';
 import { formatDotNetDate } from '../utils';
+import { InputAdornment } from '@mui/material';
 
 const defaultValues = {
     ids: [],
@@ -92,7 +93,7 @@ export const COLS_CONFIG_ORDERS: MRT_ColumnDef<Order>[] = [
         header: 'ID',
         size: 100,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
         Cell: ({ cell }) => (
             <Link className="text-sky-500 font-bold" to="/orders/$id" params={{ id: cell.getValue() as string }}>
                 {cell.getValue() as string}
@@ -104,21 +105,21 @@ export const COLS_CONFIG_ORDERS: MRT_ColumnDef<Order>[] = [
         header: 'Customer ID',
         size: 100,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'employeeId',
         header: 'Employee ID',
         size: 100,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'orderDate',
         header: 'Order Date',
         size: 100,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
         Cell: ({ cell }) => formatDotNetDate(cell.getValue() as string),
     },
     {
@@ -126,7 +127,7 @@ export const COLS_CONFIG_ORDERS: MRT_ColumnDef<Order>[] = [
         header: 'Required Date',
         size: 100,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
         Cell: ({ cell }) => formatDotNetDate(cell.getValue() as string),
     },
     {
@@ -134,14 +135,14 @@ export const COLS_CONFIG_ORDERS: MRT_ColumnDef<Order>[] = [
         header: 'Ship Via',
         size: 100,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'shippedDate',
         header: 'Shipped Date',
         size: 100,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
         Cell: ({ cell }) => formatDotNetDate(cell.getValue() as string),
     },
     {
@@ -149,42 +150,42 @@ export const COLS_CONFIG_ORDERS: MRT_ColumnDef<Order>[] = [
         header: 'Ship Name',
         size: 100,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'shipCountry',
         header: 'Ship Country',
         size: 100,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'freight',
         header: 'Freight',
         size: 100,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'shipCity',
         header: 'Ship City',
         size: 100,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'shipPostalCode',
         header: 'Ship Postal Code',
         size: 100,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
     {
         accessorKey: 'shipAddress',
         header: 'Ship Address',
         size: 100,
         enableColumnActions: false,
-        // enableSorting: false,
+        enableSorting: false,
     },
 ];
 
@@ -237,6 +238,8 @@ function OrdersComponent() {
             <h2 className="text-2xl font-bold mb-4 text-slate-500">Orders</h2>
 
             <FilterZone />
+
+            <br />
 
             <OrderTable />
         </div>
@@ -322,7 +325,21 @@ function FilterZone() {
     );
 
     return (
-        <div className="grid grid-cols-2 w-full gap-4">
+        <div className="grid grid-cols-2 w-full gap-4 text-black">
+            <FreeSoloCreateOption
+                label="IDs"
+                onChange={(e) => {
+                    const parsedString = e
+                        .map((i: any) =>
+                            typeof i === 'string' ? i : typeof i === 'object' && i.value ? i.value : null,
+                        )
+                        .filter((k: any) => !!k);
+
+                    setIdStr(parsedString);
+                }}
+                value={idStr}
+            />
+
             <TextField
                 label="Freight"
                 onChange={(e) => {
@@ -339,6 +356,8 @@ function FilterZone() {
                 }}
                 value={orderDateStr}
                 type="date"
+                InputLabelProps={{ shrink: true }}
+                sx={{ bgcolor: '#abb6f3', '>*': { color: 'black', fill: 'black' } }}
             />
 
             <TextField
@@ -348,6 +367,8 @@ function FilterZone() {
                 }}
                 value={requiredDateStr}
                 type="date"
+                InputLabelProps={{ shrink: true }}
+                sx={{ bgcolor: '#abb6f3' }}
             />
 
             <TextField
@@ -357,6 +378,8 @@ function FilterZone() {
                 }}
                 value={shippedDateStr}
                 type="date"
+                InputLabelProps={{ shrink: true }}
+                sx={{ bgcolor: '#abb6f3', '>*': { color: 'black', fill: 'black' } }}
             />
 
             <TextField
@@ -425,20 +448,6 @@ function FilterZone() {
                 value={shipCountryStr}
             />
 
-            <FreeSoloCreateOption
-                label="IDs"
-                onChange={(e) => {
-                    const parsedString = e
-                        .map((i: any) =>
-                            typeof i === 'string' ? i : typeof i === 'object' && i.value ? i.value : null,
-                        )
-                        .filter((k: any) => !!k);
-
-                    setIdStr(parsedString);
-                }}
-                value={idStr}
-            />
-
             <Autocomplete
                 disableCloseOnSelect
                 filterSelectedOptions
@@ -493,6 +502,7 @@ function OrderTable() {
 
     return (
         <MaterialReactTable
+            enableTopToolbar={false}
             data={list}
             columns={columns}
             state={{

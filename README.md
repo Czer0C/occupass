@@ -4,6 +4,23 @@
 
 This application provides a user interface for managing and viewing customer and order data through the Occupass API services. Built with React and TypeScript, it offers a modern, responsive interface for data management.
 
+## Tech Stack
+
+- **Frontend Framework**: React 19 with TypeScript
+- **State Management**: [TanStack Query (React Query)](https://tanstack.com/query/latest)
+- **UI Components**: [Material-UI (MUI) v7](https://mui.com/)
+- **Routing**: [TanStack Router](https://tanstack.com/router/latest)
+- **Table Management**: [Material React Table](https://www.material-react-table.com/docs/guides/sorting)
+- **Styling**:
+    - Emotion (CSS-in-JS)
+    - Tailwind CSS
+- **Development Tools**:
+    - TypeScript
+    - Vite
+    - TanStack Router DevTools
+    - React Query DevTools
+- **Form Validation**: Zod
+
 ## Application Structure
 
 ### Pages
@@ -67,16 +84,9 @@ The application integrates with the following REST services:
 
 ### User Interface
 
-- **Responsive Design** (All pages)
-
-    - Mobile-friendly layout
-    - Adaptive components
-    - Consistent user experience across devices
-
 - **Navigation**
-    - Intuitive menu structure
-    - Breadcrumb navigation
-    - Quick access to related data
+    - Navbar for quick access
+    - Filtering, sorting, paging will automatically append to url params => shareable links to retain state under any circumstances.
 
 ### Detailed Views
 
@@ -84,13 +94,9 @@ The application integrates with the following REST services:
 
     - View customer information
     - Associated orders list
-    - Order history and status
 
 - **Order Details** (`/orders/:id`)
-
     - View order information
-    - Customer details
-    - Order status and history
 
 ## Getting Started
 
@@ -120,6 +126,6 @@ The application integrates with the following REST services:
 - React with TypeScript
 - Server-side pagination
 - Advanced filtering and sorting
-- Responsive design
 - REST API integration
 - Error handling and loading states
+- URL params state

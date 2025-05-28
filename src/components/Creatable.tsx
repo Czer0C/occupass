@@ -96,9 +96,7 @@ export default function FreeSoloCreateOption({ onChange, label, value }: Props) 
             renderOption={(props, option: any) => <li {...props}>{option?.title || option}</li>}
             freeSolo
             fullWidth
-            renderInput={(params) => (
-                <TextField {...params} label={label} size={'small'} variant="standard" fullWidth />
-            )}
+            renderInput={(params) => <TextField {...params} label={label} fullWidth />}
         />
     );
 }

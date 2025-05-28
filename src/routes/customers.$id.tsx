@@ -6,6 +6,7 @@ import { OrderDict } from '../enum';
 import { Customer, Order, OrderDetail } from '../type';
 import { formatDotNetDate } from '../utils';
 import { Loader } from '../components/Loader';
+import { COLS_CONFIG_ORDERS } from './orders.index';
 
 const API_HOST = 'https://uitestapi.occupass.com';
 
@@ -56,64 +57,6 @@ interface CustomerResponse {
     customer: Customer;
     orders: Order[];
 }
-
-const columnsOrders: MRT_ColumnDef<Order>[] = [
-    {
-        accessorKey: 'id',
-        header: 'Order ID',
-    },
-    {
-        accessorKey: 'orderDate',
-        header: 'Order Date',
-        Cell: ({ cell }) => formatDotNetDate(cell.getValue() as string),
-    },
-    {
-        accessorKey: 'shippedDate',
-        header: 'Shipped Date',
-        Cell: ({ cell }) => formatDotNetDate(cell.getValue() as string),
-    },
-    {
-        accessorKey: 'shipVia',
-        header: 'Ship Via',
-    },
-    {
-        accessorKey: 'freight',
-        header: 'Freight',
-    },
-    {
-        accessorKey: 'shipName',
-        header: 'Ship Name',
-    },
-    {
-        accessorKey: 'shipAddress',
-        header: 'Ship Address',
-    },
-    {
-        accessorKey: 'shipCity',
-        header: 'Ship City',
-    },
-    {
-        accessorKey: 'shipPostalCode',
-        header: 'Ship Postal Code',
-    },
-    {
-        accessorKey: 'shipCountry',
-        header: 'Ship Country',
-    },
-    {
-        accessorKey: 'customerId',
-        header: 'Customer ID',
-    },
-    {
-        accessorKey: 'employeeId',
-        header: 'Employee ID',
-    },
-    {
-        accessorKey: 'requiredDate',
-        header: 'Required Date',
-        Cell: ({ cell }) => formatDotNetDate(cell.getValue() as string),
-    },
-];
 
 function CustomerDetailComponent() {
     const data = Route.useLoaderData();
@@ -202,7 +145,7 @@ function CustomerDetailComponent() {
                 muiTablePaperProps={{
                     elevation: 0,
                 }}
-                columns={columnsOrders}
+                columns={COLS_CONFIG_ORDERS}
                 data={orders}
             />
         </div>
