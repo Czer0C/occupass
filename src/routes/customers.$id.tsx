@@ -27,24 +27,24 @@ export const Route = createFileRoute('/customers/$id')({
     },
     pendingComponent: Loader,
     loader: async ({ params: { id } }) => {
-        const response = await fetch(`${API_HOST}/query/customers?id=${id}&take=1`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-            },
-        });
+        const [customerResponse, ordersResponse] = await Promise.all([
+            fetch(`${API_HOST}/query/customers?id=${id}&take=1`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            }),
+            fetch(`${API_HOST}/query/orders?customerId=${id}&take=1`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            }),
+        ]);
 
-        const response2 = await fetch(`${API_HOST}/query/orders?customerId=${id}&take=1`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-            },
-        });
-
-        const orders = await response2.json();
-        const customer = await response.json();
+        const [customer, orders] = await Promise.all([customerResponse.json(), ordersResponse.json()]);
 
         return {
             customer: customer.results[0],
