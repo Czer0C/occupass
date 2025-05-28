@@ -39,6 +39,12 @@ This application provides a user interface for managing and viewing customer and
 - **Order Details** (`/orders/:id`)
     - Detailed view of individual order
 
+### User Interface
+
+- **Navigation**
+    - Navbar for quick access
+    - **Filtering, sorting, paging will automatically append to url params => shareable links to retain state under any circumstances.**
+
 ## API Integration
 
 The application integrates with the following REST services:
@@ -81,12 +87,6 @@ The application integrates with the following REST services:
     - Server-side pagination implementation
     - Configurable page size
     - Page navigation controls
-
-### User Interface
-
-- **Navigation**
-    - Navbar for quick access
-    - Filtering, sorting, paging will automatically append to url params => shareable links to retain state under any circumstances.
 
 ### Detailed Views
 
