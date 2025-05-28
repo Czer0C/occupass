@@ -7,10 +7,18 @@ const filter = createFilterOptions<any>();
 type Props = {
     onChange: (value: any) => void;
     label: string;
+    value: any;
 };
 
-export default function FreeSoloCreateOption({ onChange, label }: Props) {
-    const [values, setValues] = React.useState([]);
+export default function FreeSoloCreateOption({ onChange, label, value }: Props) {
+    const defaultValues = value
+        ? value.map((i: any) => ({
+              label: typeof i === 'string' ? i : i.label,
+              value: typeof i === 'string' ? i : i.value,
+          }))
+        : [];
+
+    const [values, setValues] = React.useState(defaultValues);
 
     React.useEffect(() => {
         onChange(values);
@@ -48,7 +56,7 @@ export default function FreeSoloCreateOption({ onChange, label }: Props) {
     return (
         <Autocomplete
             multiple
-            value={values}
+            value={defaultValues || values}
             onChange={handleChange}
             filterOptions={(options, params) => {
                 const filtered = filter(options, params);
