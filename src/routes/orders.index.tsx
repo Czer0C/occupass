@@ -123,6 +123,17 @@ export const COLS_CONFIG_ORDERS: MRT_ColumnDef<Order>[] = [
         size: 100,
         enableColumnActions: false,
         enableSorting: false,
+        Cell: ({ cell }) => {
+            const id = cell.getValue() as string;
+
+            const url = `/customers/${id}`;
+
+            return (
+                <Link className="text-teal-500 font-bold" to={url}>
+                    {id}
+                </Link>
+            );
+        },
     },
     {
         accessorKey: 'employeeId',
