@@ -16,7 +16,7 @@ function HomeComponent() {
             </Typography>
 
             <Grid container spacing={3} sx={{ mt: 2 }}>
-                <Grid xs={12} sm={6}>
+                <Grid>
                     <Card>
                         <CardActionArea component={Link} to="/customers" sx={{ height: '100%' }}>
                             <CardContent sx={{ textAlign: 'center', py: 4 }}>
@@ -28,7 +28,7 @@ function HomeComponent() {
                         </CardActionArea>
                     </Card>
                 </Grid>
-                <Grid xs={12} sm={6}>
+                <Grid>
                     <Card>
                         <CardActionArea component={Link} to="/orders" sx={{ height: '100%' }}>
                             <CardContent sx={{ textAlign: 'center', py: 4 }}>

@@ -482,7 +482,7 @@ function useCustomers() {
 
     const params = Object.keys(search)
         .filter((key) => !!search[key as keyof typeof search])
-        .reduce((acc, key) => {
+        .reduce<Record<string, any>>((acc, key) => {
             acc[key] = search[key as keyof typeof search];
             return acc;
         }, {});
