@@ -11,7 +11,7 @@ import FreeSoloCreateOption from '../components/Creatable';
 
 import { Order } from '../type';
 import { z } from 'zod';
-import { ArrowBack, ArrowForward, CalendarMonth } from '@mui/icons-material';
+import { ArrowBack, ArrowForward, CalendarMonth, CopyAll } from '@mui/icons-material';
 import { formatDotNetDate } from '../utils';
 import { InputAdornment } from '@mui/material';
 
@@ -94,11 +94,28 @@ export const COLS_CONFIG_ORDERS: MRT_ColumnDef<Order>[] = [
         size: 100,
         enableColumnActions: false,
         enableSorting: false,
-        Cell: ({ cell }) => (
-            <Link className="text-sky-500 font-bold" to="/orders/$id" params={{ id: cell.getValue() as string }}>
-                {cell.getValue() as string}
-            </Link>
-        ),
+        Cell: ({ cell }) => {
+            const id = cell.getValue() as string;
+
+            const url = `/orders/${id}`;
+
+            return (
+                <span className="grid grid-cols-2 items-center gap-2">
+                    <Link className="text-sky-500 font-bold" to={url}>
+                        {id}
+                    </Link>
+
+                    <CopyAll
+                        className="cursor-pointer"
+                        onClick={() => {
+                            if (typeof navigator?.clipboard?.writeText === 'function') {
+                                navigator.clipboard.writeText(id);
+                            }
+                        }}
+                    />
+                </span>
+            );
+        },
     },
     {
         accessorKey: 'customerId',

@@ -9,7 +9,7 @@ import * as React from 'react';
 import FreeSoloCreateOption from '../components/Creatable';
 import { Customer } from '../type';
 import { z } from 'zod';
-import { ArrowBack, ArrowForward } from '@mui/icons-material';
+import { ArrowBack, ArrowForward, CopyAll } from '@mui/icons-material';
 import { CustomersDict } from '../enum';
 
 interface ResponseApi {
@@ -299,7 +299,7 @@ const COLS_CONFIG: MRT_ColumnDef<Customer>[] = [
     {
         accessorKey: 'id',
         header: 'ID',
-        size: 100,
+        size: 125,
         enableColumnActions: false,
         enableSorting: false,
         Cell: ({ cell }) => {
@@ -308,9 +308,20 @@ const COLS_CONFIG: MRT_ColumnDef<Customer>[] = [
             const url = `/customers/${id}`;
 
             return (
-                <Link className="text-sky-500 font-bold" to={url}>
-                    {typeof id === 'string' ? id : 'N/A'}
-                </Link>
+                <span className="grid grid-cols-2 items-center gap-2">
+                    <Link className="text-sky-500 font-bold" to={url}>
+                        {typeof id === 'string' ? id : 'N/A'}
+                    </Link>
+
+                    <CopyAll
+                        className="cursor-pointer"
+                        onClick={() => {
+                            if (typeof navigator?.clipboard?.writeText === 'function') {
+                                navigator.clipboard.writeText(id);
+                            }
+                        }}
+                    />
+                </span>
             );
         },
     },

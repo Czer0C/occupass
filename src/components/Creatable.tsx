@@ -68,7 +68,7 @@ export default function FreeSoloCreateOption({ onChange, label, value }: Props) 
                 if (inputValue !== '' && !isExisting) {
                     filtered.push({
                         value: inputValue,
-                        title: `${inputValue}`,
+                        title: `Add ${inputValue}`,
                         // disabled: values.length >= max,
                     });
                 }
