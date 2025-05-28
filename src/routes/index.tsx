@@ -1,8 +1,7 @@
-import * as React from 'react';
-import { createFileRoute, Link } from '@tanstack/react-router';
-import { Card, CardContent, CardActionArea, Typography, Grid, Box } from '@mui/material';
 import PeopleIcon from '@mui/icons-material/People';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Box, Card, CardActionArea, CardContent, Grid, Typography } from '@mui/material';
+import { createFileRoute, Link } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/')({
     component: HomeComponent,

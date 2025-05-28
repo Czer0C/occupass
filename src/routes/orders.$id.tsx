@@ -1,10 +1,8 @@
 import { ArrowBack } from '@mui/icons-material';
 import { createFileRoute, useParams, useRouter } from '@tanstack/react-router';
-import { MaterialReactTable, MRT_ColumnDef } from 'material-react-table';
-import { NotFound } from '../components/NotFound';
-import { Order, OrderDetail } from '../type';
-import { formatDotNetDate } from '../utils';
 import { Loader } from '../components/Loader';
+import { NotFound } from '../components/NotFound';
+import { formatDotNetDate } from '../utils';
 
 const API_HOST = 'https://uitestapi.occupass.com';
 
