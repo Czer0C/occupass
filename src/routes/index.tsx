@@ -18,7 +18,7 @@ function HomeComponent() {
             <Grid container spacing={3} sx={{ mt: 2 }}>
                 <Grid>
                     <Card>
-                        <CardActionArea component={Link} to="/customers" sx={{ height: '100%' }}>
+                        <CardActionArea component={Link} to="/customers" sx={{ height: '100%', width: 200 }}>
                             <CardContent sx={{ textAlign: 'center', py: 4 }}>
                                 <PeopleIcon sx={{ fontSize: 60, mb: 2, color: 'primary.main' }} />
                                 <Typography variant="h5" component="div">
@@ -30,7 +30,7 @@ function HomeComponent() {
                 </Grid>
                 <Grid>
                     <Card>
-                        <CardActionArea component={Link} to="/orders" sx={{ height: '100%' }}>
+                        <CardActionArea component={Link} to="/orders" sx={{ height: '100%', width: 200 }}>
                             <CardContent sx={{ textAlign: 'center', py: 4 }}>
                                 <ShoppingCartIcon sx={{ fontSize: 60, mb: 2, color: 'primary.main' }} />
                                 <Typography variant="h5" component="div">
