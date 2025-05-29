@@ -9,7 +9,7 @@ import * as React from 'react';
 
 import FreeSoloCreateOption from '../components/Creatable';
 
-import { ArrowBack, ArrowForward, CopyAll } from '@mui/icons-material';
+import { ArrowBack, ArrowForward, ChevronLeft, ChevronRight, CopyAll } from '@mui/icons-material';
 import { z } from 'zod';
 import { Order } from '../type';
 import { formatDotNetDate } from '../utils';
@@ -562,47 +562,77 @@ function OrderTable() {
 }
 
 function PaginationZone() {
+    const [prevTotal, setPrevTotal] = React.useState(0);
+
     const { data, isLoading } = useOrders();
 
     const search = Route.useSearch();
 
     const router = useRouter();
 
+    React.useEffect(() => {
+        if (data?.total) {
+            setPrevTotal(data.total);
+        }
+    }, [data?.total]);
+
+    const lastPage = Math.ceil((data?.total ?? 0) / search.take) - 1;
+
     return (
-        <div className="flex gap-4 items-center p-4">
+        <div className="flex gap-1 items-center p-4">
             <button
-                disabled={search.skip === 0}
+                disabled={isLoading}
+                className="bg-sky-500 text-white px-4 py-2 rounded-md flex items-center gap-2 disabled:opacity-50"
+                onClick={() => {
+                    router.navigate({ to: '/orders', search: { ...search, skip: 0 } });
+                }}
+            >
+                First
+            </button>
+            <button
+                disabled={search.skip === 0 || isLoading}
                 className="bg-sky-500 text-white px-4 py-2 rounded-md flex items-center gap-2 disabled:opacity-50"
                 onClick={() => {
                     router.navigate({ to: '/orders', search: { ...search, skip: search.skip - search.take } });
                 }}
             >
-                <ArrowBack />
-                Previous
+                <ChevronLeft />
             </button>
             <button
                 className="bg-sky-500 text-white px-4 py-2 rounded-md flex items-center gap-2 disabled:opacity-50"
-                disabled={search.skip + search.take >= (data?.total ?? 0)}
+                disabled={search.skip + search.take >= (data?.total ?? 0) || isLoading}
                 onClick={() => {
                     router.navigate({ to: '/orders', search: { ...search, skip: search.skip + search.take } });
                 }}
             >
-                Next
-                <ArrowForward />
+                <ChevronRight />
             </button>
-            <select
-                className="bg-slate-500 text-white px-4 py-2 rounded-md flex items-center gap-2 disabled:opacity-50"
-                onChange={(e) => {
-                    router.navigate({ to: '/orders', search: { ...search, take: parseInt(e.target.value) } });
+            <button
+                disabled={search.skip + search.take >= (data?.total ?? 0) || isLoading}
+                className="bg-sky-500 text-white px-4 py-2 rounded-md flex items-center gap-2 disabled:opacity-50"
+                onClick={() => {
+                    router.navigate({ to: '/orders', search: { ...search, skip: lastPage * search.take } });
                 }}
             >
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
-            <span>
-                {search.skip} - {search.take}
+                Last
+            </button>
+
+            <span className="ml-auto flex items-center gap-4">
+                <select
+                    disabled={isLoading}
+                    className="bg-slate-500 text-white px-4 py-2 rounded-md flex items-center gap-2 disabled:opacity-50"
+                    onChange={(e) => {
+                        router.navigate({ to: '/orders', search: { ...search, take: parseInt(e.target.value) } });
+                    }}
+                >
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <span>
+                    <b>{search.skip + 1}</b> - <b>{search.skip + search.take}</b> of <b>{prevTotal}</b>
+                </span>
             </span>
         </div>
     );
