@@ -2,15 +2,15 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { useQuery } from '@tanstack/react-query';
 import { createFileRoute, Link, stripSearchParams, useRouter } from '@tanstack/react-router';
-import { MaterialReactTable, type MRT_ColumnDef, type MRT_PaginationState } from 'material-react-table';
 import { zodValidator } from '@tanstack/zod-adapter';
+import { MaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
 
+import { ChevronLeft, ChevronRight, CopyAll } from '@mui/icons-material';
 import * as React from 'react';
-import FreeSoloCreateOption from '../components/Creatable';
-import { Customer } from '../type';
 import { z } from 'zod';
-import { ArrowBack, ArrowForward, ChevronLeft, ChevronRight, CopyAll, DoubleArrow } from '@mui/icons-material';
+import FreeSoloCreateOption from '../components/Creatable';
 import { CustomersDict } from '../enum';
+import { Customer } from '../type';
 
 interface ResponseApi {
     offset: number;
