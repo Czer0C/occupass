@@ -368,6 +368,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Freight"
                 onChange={(e) => {
                     setFreightStr(e.target.value);
@@ -377,6 +378,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Order Date"
                 onChange={(e) => {
                     setOrderDateStr(e.target.value);
@@ -388,6 +390,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Required Date"
                 onChange={(e) => {
                     setRequiredDateStr(e.target.value);
@@ -399,6 +402,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Shipped Date"
                 onChange={(e) => {
                     setShippedDateStr(e.target.value);
@@ -410,6 +414,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Customer ID"
                 onChange={(e) => {
                     setCustomerIdStr(e.target.value);
@@ -418,6 +423,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Employee ID"
                 onChange={(e) => {
                     setEmployeeIdStr(e.target.value);
@@ -427,6 +433,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Ship Via"
                 onChange={(e) => {
                     setShipViaStr(e.target.value);
@@ -436,6 +443,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Ship Name"
                 onChange={(e) => {
                     setShipNameStr(e.target.value);
@@ -444,6 +452,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Ship Address"
                 onChange={(e) => {
                     setShipAddressStr(e.target.value);
@@ -452,6 +461,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Ship City"
                 onChange={(e) => {
                     setShipCityStr(e.target.value);
@@ -460,6 +470,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Ship Postal Code"
                 onChange={(e) => {
                     setShipPostalCodeStr(e.target.value);
@@ -468,6 +479,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Ship Country"
                 onChange={(e) => {
                     setShipCountryStr(e.target.value);
@@ -479,7 +491,7 @@ function FilterZone() {
                 disableCloseOnSelect
                 filterSelectedOptions
                 isOptionEqualToValue={(option, value) => option?.value === value?.value}
-                renderInput={(params) => <TextField {...params} label="Order By" />}
+                renderInput={(params) => <TextField {...params} size="small" label="Order By" />}
                 multiple
                 options={optionsFields}
                 onChange={(e, value) => {
@@ -492,7 +504,7 @@ function FilterZone() {
                 disableCloseOnSelect
                 filterSelectedOptions
                 isOptionEqualToValue={(option, value) => option?.value === value?.value}
-                renderInput={(params) => <TextField {...params} label="Order By Desc" />}
+                renderInput={(params) => <TextField {...params} size="small" label="Order By Desc" />}
                 multiple
                 options={optionsFields}
                 onChange={(e, value) => {

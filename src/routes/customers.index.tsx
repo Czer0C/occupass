@@ -183,7 +183,7 @@ function FilterZone() {
                 disableCloseOnSelect
                 filterSelectedOptions
                 isOptionEqualToValue={(option, value) => option?.value === value?.value}
-                renderInput={(params) => <TextField {...params} label="Order By" />}
+                renderInput={(params) => <TextField {...params} size="small" label="Order By" />}
                 multiple
                 options={optionsFields}
                 onChange={(e, value) => {
@@ -196,7 +196,7 @@ function FilterZone() {
                 disableCloseOnSelect
                 filterSelectedOptions
                 isOptionEqualToValue={(option, value) => option?.value === value?.value}
-                renderInput={(params) => <TextField {...params} label="Order By Desc" />}
+                renderInput={(params) => <TextField {...params} size="small" label="Order By Desc" />}
                 multiple
                 options={optionsFields}
                 onChange={(e, value) => {
@@ -209,6 +209,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Company Name"
                 onChange={(e) => {
                     setCompanyNameStr(e.target.value);
@@ -217,6 +218,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Contact Name"
                 onChange={(e) => {
                     setContactNameStr(e.target.value);
@@ -225,6 +227,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Contact Title"
                 onChange={(e) => {
                     setContactTitleStr(e.target.value);
@@ -233,6 +236,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Address"
                 onChange={(e) => {
                     setAddressStr(e.target.value);
@@ -241,6 +245,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="City"
                 onChange={(e) => {
                     setCityStr(e.target.value);
@@ -249,6 +254,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Postal Code"
                 onChange={(e) => {
                     setPostalCodeStr(e.target.value);
@@ -257,6 +263,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Country"
                 onChange={(e) => {
                     setCountryStr(e.target.value);
@@ -265,6 +272,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Phone"
                 onChange={(e) => {
                     setPhoneStr(e.target.value);
@@ -273,6 +281,7 @@ function FilterZone() {
             />
 
             <TextField
+                size="small"
                 label="Fax"
                 onChange={(e) => {
                     setFaxStr(e.target.value);
